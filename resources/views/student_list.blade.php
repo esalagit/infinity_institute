@@ -12,15 +12,20 @@ All Students In Institute
         <div class="col-12">
             <h1>Students List</h1>
         </div>
-        <div class="col-6">
+        <div class="col-12">
             <table class="table">
                 <thead>
                 <tr>
 
-                    <th>Reg No</th>
+                    <th>Student ID</th>
                     <th>Name</th>
                     <th>Address</th>
-                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Phone NO 1</th>
+                    <th>Phone NO 2</th>
+                    <th>Parent's Phone</th>
+                    <th>Course</th>
+                    <th>Grade</th>
                     <th>Class</th>
                     <th>Actions</th>
 
@@ -34,15 +39,20 @@ All Students In Institute
 
                 <tr>
 
-                    <td>{{$student->reg_no}}</td>
+                    <td>{{$student->sid}}</td>
                     <td>{{$student->name}}</td>
                     <td>{{$student->address}}</td>
-                    <td>{{$student->phone}}</td>
+                    <td>{{$student->email}}</td>
+                    <td>{{$student->phone1}}</td>
+                    <td>{{$student->phone2}}</td>
+                    <td>{{$student->pphone}}</td>
+                    <td>{{$student->course}}</td>
+                    <td>{{$student->grade}}</td>
                     <td>{{$student->class}}</td>
                     <td>
-                        <button class="btn btn-dark btn-sm mb-2">Update</button>
+                        <a href="{{route('student.edit',$student->id)}}" class="btn btn-dark btn-sm mb-2">Update</a>
 
-                        <button class="btn btn-warning btn-sm">Delete</button>
+                        <a href="{{route('student.delete',$student->id)}}" class="btn btn-warning btn-sm mb-2">Delete</a>
 
                     </td>
 
@@ -51,6 +61,8 @@ All Students In Institute
                 </tbody>
             </table>
 
+
+            <a href="{{route('student.sregiform')}}" class="btn btn-primary mt-3">Register Student</a>
         </div>
     </div>
 </div>
