@@ -223,6 +223,25 @@
     const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
     sparkline3.render();
 </script>
+
+<!-- jQuery MUST BE FIRST -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables JS AFTER jQuery -->
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+<!-- Initialize DataTable LAST -->
+<script>
+    $(document).ready(function () {
+        $('#studentsTable').DataTable({
+            pageLength: 10,
+            lengthMenu: [5,10,15,20,25],
+            ordering: true,
+            searching: true
+        });
+    });
+</script>
+
 @stack('script')
 <!--end::Script-->
 

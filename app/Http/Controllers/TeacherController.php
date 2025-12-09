@@ -22,6 +22,10 @@ class TeacherController extends Controller
     {
 
         try {
+
+            $imagePath1=ImageUpload::uploadImage($request->file('nicf'),'Teacher/NICF');
+            $imagePath2=ImageUpload::uploadImage($request->file('nicb'),'Teacher/NICB');
+
             Teacher::query()->create([
                 'tid' => $request->tid,
                 'name' => $request->name,
@@ -29,6 +33,8 @@ class TeacherController extends Controller
                 'email' => $request->email,
                 'phone1' => $request->phone1,
                 'phone2' => $request->phone2,
+                'nicf' => $imagePath1,
+                'nicb' => $imagePath2,
                 'course1' => $request->course1,
                 'course2' => $request->course2,
                 'subject1'=> $request->subject1,

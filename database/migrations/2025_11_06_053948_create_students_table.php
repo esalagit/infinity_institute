@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('course');
             $table->integer('grade');
             $table->string('class');
+            $table->string('password');
             $table->timestamps();
         });
     }

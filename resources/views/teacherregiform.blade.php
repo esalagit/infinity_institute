@@ -20,7 +20,7 @@
         <div class="col-12 d-flex justify-content-center" >
 
 
-            <form method="post" action="{{route('teacher.tsave')}}" class="registration-form w-50">
+            <form method="post" action="{{route('teacher.tsave')}}" class="registration-form w-50" enctype="multipart/form-data">
                 @csrf
                 <label>Teacher ID</label>
                 <input type="text" class="form-control" name="tid"  placeholder="Enter Teacher ID" required>
@@ -38,6 +38,12 @@
                 <input type="number" class="form-control" name="phone1"  placeholder="Enter Phone No 1" required>
                 <br>
                 <input type="number" class="form-control" name="phone2"  placeholder="Enter Phone No 2" required>
+                <br>
+                <label>NIC Photo Front</label>
+                <input type="file" class="form-control" name="nicf"  placeholder="Upload NIC Front" required>
+                <br>
+                <label>NIC Photo Back</label>
+                <input type="file" class="form-control" name="nicb"  placeholder="Upload NIC Front" required>
                 <br>
                 <label>Course 1</label>
                 <input type="text" class="form-control" name="course1"  placeholder="Enter Course Name" required>

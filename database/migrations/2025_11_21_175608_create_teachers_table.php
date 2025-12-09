@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email');
             $table->integer('phone1');
             $table->integer('phone2');
+            $table->string('nicf');
+            $table->string('nicb');
             $table->string('course1');
             $table->string('course2')->nullable();
             $table->string('subject1');

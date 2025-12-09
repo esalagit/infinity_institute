@@ -142,6 +142,60 @@
                 </li>
 
 
+                <li class="nav-item ">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon bi bi-mortarboard-fill"></i>
+                        <p>
+                            Grade Section
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('grade.graderegiform')}}" class="nav-link active">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Grade Register</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href='{{route('grade.gradelistview')}}' class="nav-link active">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Grade List List</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <li class="nav-item ">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon bi bi-mortarboard-fill"></i>
+                        <p>
+                            Class Section
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('class.classregiform')}}" class="nav-link active">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Class Register</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('class.classlistview')}}" class="nav-link active">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Class List</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
 
 
 

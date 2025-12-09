@@ -16,6 +16,8 @@ class Teacher extends Model
         'email',
         'phone1',
         'phone2',
+        'nicf',
+        'nicb',
         'course1',
         'course2',
         'subject1',

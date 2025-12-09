@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
 
 
-    public function welcomeview(){
+    public function welcome_view(){
         return view('welcome');
     }
     public function studentformview(){
@@ -43,7 +44,8 @@ class StudentController extends Controller
                 'pphone' => $request->pphone,
                 'course' => $request->course,
                 'grade' => $request->grade,
-                'class' => $request->class
+                'class' => $request->class,
+                'password'=>Hash::make($request->password)
             ]);
             return redirect()->route('student.studentlistview');
 
@@ -81,7 +83,8 @@ class StudentController extends Controller
                        'pphone' => $request->pphone,
                        'course' => $request->course,
                        'grade' => $request->grade,
-                       'class' => $request->class
+                       'class' => $request->class,
+                       'password'=>Hash::make($request->password)
             ]);
             return redirect()->route('student.studentlistview');
 
@@ -98,6 +101,22 @@ class StudentController extends Controller
                 ->delete();
             return redirect()->route('student.studentlistview');
         }catch (\Exception $e){
+            return $e;
+        }
+    }
+
+    public function student_image_view(){
+
+        try{
+
+          $students = Student::all();
+
+          return view('studentview',compact('students'));
+
+
+        }
+
+        catch (\Exception $e){
             return $e;
         }
     }

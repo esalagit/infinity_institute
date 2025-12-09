@@ -3,6 +3,8 @@
 @push('maintitle')
 
 All Students In Institute
+
+
 @endpush
 
 @section('content')
@@ -13,7 +15,10 @@ All Students In Institute
             <h1>Students List</h1>
         </div>
         <div class="col-12">
-            <table class="table">
+
+
+
+                        <table id="studentsTable" class="table table-bordered table-striped">
                 <thead>
                 <tr>
 
