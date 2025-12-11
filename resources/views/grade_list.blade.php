@@ -34,7 +34,7 @@ All Grades
 
                     <td>{{$grade->gradeid}}</td>
                     <td>{{$grade->gradename}}</td>
-                    <td>{{$grade->classname}}</td>
+                    <td>{{ $grade->classroom ? $grade->classroom->classname : 'N/A' }}</td>
 
                     <td>
                         <a href="{{route('grade.edit',$grade->id)}}" class="btn btn-dark btn-sm mb-2">Update</a>
