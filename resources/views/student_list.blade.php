@@ -17,8 +17,11 @@ All Students In Institute
         <div class="col-12">
 
 
+            <a href="{{ route('student.export') }}" class="btn btn-success mb-2 ">
+                Export Excel
+            </a>
 
-                        <table id="studentsTable" class="table table-bordered table-striped">
+            <table id="studentsTable" class="table table-bordered table-striped">
                 <thead>
                 <tr>
 
@@ -52,7 +55,7 @@ All Students In Institute
                     <td>{{$student->phone2}}</td>
                     <td>{{$student->pphone}}</td>
                     <td>{{$student->course}}</td>
-                    <td>{{$student->grade}}</td>
+                    <td>{{$student->gradeview ? $student-> gradeview->gradename: 'N/A' }}</td>
                     <td>{{$student->class}}</td>
                     <td>
                         <a href="{{route('student.edit',$student->id)}}" class="btn btn-dark btn-sm mb-2">Update</a>

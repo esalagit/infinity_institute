@@ -8,18 +8,24 @@ All Courses
 @section('content')
 
 <div class="container">
+
+
     <div class="row">
         <div class="col-12">
             <h1>Courses List</h1>
-        </div>
+
+            <a href="{{ route('course.export') }}" class="btn btn-success mb-2 ">
+                Export Excel
+            </a>
+
         <div class="col-12">
-            <table class="table">
+            <table class="table" id="courseTable">
                 <thead>
                 <tr>
 
                     <th>Course ID</th>
                     <th>Course Name</th>
-                    <th>Course Code</th>
+                    <th>Subject Name</th>
                     <th>Actions</th>
 
                 </tr>
@@ -34,7 +40,8 @@ All Courses
 
                     <td>{{$course->courseid}}</td>
                     <td>{{$course->coursename}}</td>
-                    <td>{{$course->ccode}}</td>
+                    <td>{{ $course->subjectview ? $course->subjectview->subjectname: 'N/A' }}</td>
+
 
                     <td>
                         <a href="{{route('course.edit',$course->id)}}" class="btn btn-dark btn-sm mb-2">Update</a>

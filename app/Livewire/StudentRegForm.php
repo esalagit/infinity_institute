@@ -14,7 +14,7 @@ class StudentRegForm extends Component
 
 
 {
-    public $sid,$name,$address,$email,$phone1,$phone2,$nicf,$nicb,$pphone,$course,$grade,$class,$password;
+    public $sid,$name,$address,$email,$phone1,$phone2,$nicf,$nicb,$pphone,$course,$grade,$password;
 
 
 
@@ -55,7 +55,6 @@ class StudentRegForm extends Component
             'pphone' =>$this->pphone,
             'course' => $this->course,
             'grade' => $this->grade,
-            'class' => $this->class,
             'password'=>Hash::make($this->password)
         ]);
    $this->clear();
@@ -78,7 +77,6 @@ public function clear(){
         $this->pphone='';
         $this->course='';
         $this->grade='';
-        $this->class='';
         $this->password='';
 }
 

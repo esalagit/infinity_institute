@@ -9,15 +9,16 @@ class Subject extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'ccode',
-        'subid1',
-        'subname1',
-         'subid2',
-        'subname2',
-        'subid3',
-        'subname3',
-        'subid4',
-        'subname4'
+
+        'subjectid',
+        'subjectname',
+
     ];
+
+    public function courses()
+    {
+
+        return $this->hasMany(Course::class , 'subject_id');
+    }
 
 }

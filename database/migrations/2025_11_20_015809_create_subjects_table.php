@@ -12,16 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('subjects', function (Blueprint $table) {
-            $table->id();
-            $table->String('ccode');
-            $table->String('subid1');
-            $table->String('subname1');
-            $table->String('subid2')->nullable();
-            $table->String('subname2')->nullable();
-            $table->String('subid3')->nullable();
-            $table->String('subname3')->nullable();
-            $table->string('subid4')->nullable();
-            $table->String('subname4')->nullable();
+
+            $table->String('subjectid');
+            $table->String('subjectname');
+
             $table->timestamps();
         });
     }

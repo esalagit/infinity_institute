@@ -11,6 +11,12 @@ class Course extends Model
 protected $fillable=[
     'courseid',
     'coursename',
-    'ccode'
+    'subject_id'
 ];
+
+    public function subjectview()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
 }

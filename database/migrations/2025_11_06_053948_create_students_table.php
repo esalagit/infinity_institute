@@ -23,8 +23,7 @@ return new class extends Migration
             $table->string('nicb');
             $table->integer('pphone');
             $table->string('course');
-            $table->integer('grade');
-            $table->string('class');
+            $table->integer('gradename');
             $table->string('password');
             $table->timestamps();
         });

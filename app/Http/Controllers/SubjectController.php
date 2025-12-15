@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SubjectExport;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SubjectController extends Controller
 {
@@ -22,15 +24,9 @@ class SubjectController extends Controller
     {
         try {
             Subject::query()->create([
-                'ccode' => $request->ccode,
-                'subid1' => $request->subid1,
-                'subname1' => $request->subname1,
-                'subid2' => $request->subid2,
-                'subname2' => $request->subname2,
-                'subid3' => $request->subid3,
-                'subname3' => $request->subname3,
-                'subid4' => $request->subid4,
-                'subname4' => $request->subname4,
+
+                'subjectid' => $request->subjectid,
+                'subjectname' => $request->subjectname,
 
 
             ]);
@@ -40,10 +36,10 @@ class SubjectController extends Controller
         }
     }
     public function edit($id){
-        $subject = Subject::query()
+        $subjects = Subject::query()
             ->where('id',$id)
             ->first();
-        return view('subjectupdateform',compact('subject'));
+        return view('subjectupdateform',compact('subjects'));
 
     }
 
@@ -53,15 +49,10 @@ class SubjectController extends Controller
             Subject::query()
             ->where('id',$request->id)
             ->update([
-                'ccode' => $request->ccode,
-                'subid1' => $request->subid1,
-                'subname1' => $request->subname1,
-                'subid2' => $request->subid2,
-                'subname2' => $request->subname2,
-                'subid3' => $request->subid3,
-                'subname3' => $request->subname3,
-                'subid4' => $request->subid4,
-                'subname4' => $request->subname4,
+
+                'subjectid' => $request->subjectid,
+                'subjectname' => $request->subjectname,
+
 
 
             ]);
@@ -81,6 +72,10 @@ class SubjectController extends Controller
         catch(\Exception $e){
             return $e;
         }
+    }
+
+    public function export(){
+        return Excel::download(new SubjectExport,'subject.xlsx');
     }
 
 }

@@ -24,8 +24,18 @@ protected $fillable=[
     'nicb',
     'pphone',
     'course',
-    'grade',
-    'class',
+    'grade_id',
     'password'
 ];
+
+
+    public function gradeview()
+    {
+        return $this->belongsTo(Grade::class, 'grade_id');
+    }
+
+
+
+
+
 }

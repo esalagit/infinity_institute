@@ -13,7 +13,7 @@
 
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-                <form method="post" action="{{ route('grade.grsave') }}" class="registration-form w-50">
+                <form method="post" action="{{ route('grade.grsave')}}" class="registration-form w-50">
                     @csrf
 
                     <label>Grade ID</label>
@@ -29,7 +29,7 @@
                         @foreach ($classes as $class)
 
 
-                            <option value="{{ $class->id }}">{{ $class->classname }}</option>
+                            <option value="{{ $class->id }}">{{ $class->classname}}</option>
                         @endforeach
                     </select>
                     <br>

@@ -11,9 +11,13 @@ All Grades
     <div class="row">
         <div class="col-12">
             <h1>Grade List</h1>
+
+            <a href="{{ route('grade.export') }}" class="btn btn-success mb-2 ">
+                Export Excel
+            </a>
         </div>
         <div class="col-12">
-            <table class="table">
+            <table class="table" id="gradeTable">
                 <thead>
                 <tr>
 

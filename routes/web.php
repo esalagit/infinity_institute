@@ -32,6 +32,7 @@ Route::prefix('student')->group(function(){
         Route::get('/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
         Route::post('/update', [StudentController::class, 'update'])->name('student.update');
         Route::get('/scardlist', [StudentController::class, 'student_image_view'])->name('student.img_card');
+        Route::get('/export', [StudentController::class, 'export'])->name('student.export');
 
     });
 });
@@ -54,6 +55,7 @@ Route::prefix('subject')->group(function(){
     Route::get('/delete/{id}',[SubjectController::class,'delete'])->name('subject.delete');
     Route::get('/edit/{id}',[SubjectController::class,'edit'])->name('subject.edit');
     Route::post('/update',[SubjectController::class,'update'])->name('subject.update');
+    Route::get('/export', [SubjectController::class, 'export'])->name('subject.export');
 });
 
 Route::prefix('course')->group(function(){
@@ -63,6 +65,7 @@ Route::prefix('course')->group(function(){
     Route::get('/delete/{id}',[CourseController::class,'delete'])->name('course.delete');
     Route::get('/edit/{id}',[CourseController::class,'edit'])->name('course.edit');
     Route::post('/update',[CourseController::class,'update'])->name('course.update');
+    Route::get('/export', [CourseController::class, 'export'])->name('course.export');
 
 });
 
@@ -75,6 +78,7 @@ Route::prefix('class')->group(function(){
     Route::get('/edit/{id}',[ClassController::class,'edit'])->name('class.edit');
     Route::post('/update',[ClassController::class,'update'])->name('class.update');
     Route::get('/delete/{id}',[ClassController::class,'delete'])->name('class.delete');
+    Route::get('/export', [ClassController::class, 'export'])->name('class.export');
 });
 
 
@@ -86,4 +90,5 @@ Route::prefix('grade')->group(function(){
     Route::get('/edit/{id}',[GradeController::class,'edit'])->name('grade.edit');
     Route::post('/update',[GradeController::class,'update'])->name('grade.update');
     Route::get('/delete/{id}',[GradeController::class,'delete'])->name('grade.delete');
+    Route::get('/export', [GradeController::class, 'export'])->name('grade.export');
 });

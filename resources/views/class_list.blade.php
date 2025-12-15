@@ -11,14 +11,18 @@ All Classes
     <div class="row">
         <div class="col-12">
             <h1>Classes List</h1>
+
+            <a href="{{ route('class.export') }}" class="btn btn-success mb-2 ">
+                Export Excel
+            </a>
         </div>
         <div class="col-12">
-            <table class="table">
+            <table class="table" id="classTable">
                 <thead>
                 <tr>
 
                     <th>Class ID</th>
-                    <th>Course Name</th>
+                    <th>Class Name</th>
                     <th>Actions</th>
 
                 </tr>

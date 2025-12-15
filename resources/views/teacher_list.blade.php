@@ -13,7 +13,7 @@ All Teachers In Institute
             <h1>Teachers List</h1>
         </div>
         <div class="col-12">
-            <table class="table">
+            <table class="table" id="teacherTable">
                 <thead>
                 <tr>
 

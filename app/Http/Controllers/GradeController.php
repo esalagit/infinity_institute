@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 
+use App\Exports\GradeExport;
 use App\Models\Classes;
 use App\Models\Grade;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GradeController extends Controller
 {
     public function graderegiview()
 
     {   $classes = Classes::all();
+
         return view('graderegiform',compact('classes'));
     }
 
@@ -37,7 +40,7 @@ class GradeController extends Controller
             ]);
 
 
-            return redirect()->route('grade.gradelistview')->with('success', 'Grade saved.');
+            return redirect()->route('grade.gradelistview');
 
         } catch (\Exception $e) {
             return $e;
@@ -94,6 +97,10 @@ class GradeController extends Controller
             return redirect()->route('grade.gradelistview');
         } catch
         (\Exception $e){return $e;}
+    }
+
+    public function export(){
+        return Excel::download(new GradeExport,'grade.xlsx');
     }
 
 

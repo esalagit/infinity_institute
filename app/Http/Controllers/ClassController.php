@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 
+use App\Exports\ClassExport;
 use App\Models\Classes;
 
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClassController extends Controller
 {
     public function classregiview(){
         return view('classregiform');
     }
-
+    public function classlistview(){
+        $classes = Classes::all();
+        return view('class_list', compact('classes'));
+    }
 
 
     public function store(Request $request){
@@ -32,10 +37,7 @@ class ClassController extends Controller
         }
     }
 
-    public function classlistview(){
-        $classes = Classes::all();
-        return view('class_list', compact('classes'));
-    }
+
 
     public function edit($id){
 
@@ -75,6 +77,10 @@ class ClassController extends Controller
             return redirect()->route('class.classlistview');
         } catch
         (\Exception $e){return $e;}
+    }
+
+    public function export(){
+        return Excel::download(new ClassExport,'class.xlsx');
     }
 
 }

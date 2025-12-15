@@ -242,6 +242,60 @@
     });
 </script>
 
+<script>
+    $(document).ready(function () {
+        $('#courseTable').DataTable({
+            pageLength: 10,
+            lengthMenu: [5,10,15,20,25],
+            ordering: true,
+            searching: true
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#subjectTable').DataTable({
+            pageLength: 10,
+            lengthMenu: [5,10,15,20,25],
+            ordering: true,
+            searching: true
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#gradeTable').DataTable({
+            pageLength: 10,
+            lengthMenu: [5,10,15,20,25],
+            ordering: true,
+            searching: true
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#classTable').DataTable({
+            pageLength: 10,
+            lengthMenu: [5,10,15,20,25],
+            ordering: true,
+            searching: true
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#teacherTable').DataTable({
+            pageLength: 10,
+            lengthMenu: [5,10,15,20,25],
+            ordering: true,
+            searching: true
+        });
+    });
+</script>
 @stack('script')
 <!--end::Script-->
 

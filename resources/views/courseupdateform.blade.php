@@ -29,9 +29,16 @@
                 <label>Course Name</label>
                 <input type="text" class="form-control" name="coursename" value="{{$course->coursename}}"   placeholder="Enter Course Name" required>
                 <br>
-                <label>Course Code</label>
-                <input type="text" class="form-control" name="ccode"  value="{{$course->ccode}}"  placeholder="Enter Course Code" required>
+                <label>Subject</label>
+                <select name="subject_id" class="form-control" required>
+                    @foreach ($subjects as $subject)
+
+
+                        <option value="{{ $subject->id }}">{{ $subject->subjectname }}</option>
+                    @endforeach
+                </select>
                 <br>
+
 
                 <button type="submit" class="btn btn-success w-75 mt-5">Update Course</button>
             </form>
