@@ -32,7 +32,7 @@
 
                         <p class="card-text">{{$student->email}}</p>
                         <br>
-                        <p class="card-text">{{$student->course}}</p>
+
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                     @endforeach

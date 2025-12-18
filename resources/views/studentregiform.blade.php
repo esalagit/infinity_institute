@@ -51,26 +51,16 @@
                 <input type="number" class="form-control"  name="pphone" placeholder="Enter Phone No" required>
                 <br>
 
-                <label>Course</label>
-                <input type="text" class="form-control"  name="course" placeholder="Enter Course Name" required>
-                <br>
 
-
-
-                <label>Grade</label>
-                <select name="grade_id" class="form-control" required>
-                    @foreach ($grades as $grade)
-
-
-{{--                        <option value="{{ $grade->id }}">{{ $grade->gradename}}</option>--}}
-
-                        <option value="{{ $grade->id }}">
-                            {{ $grade->gradename }} - {{ $grade->classroom->classname }}
+              <label>Subject</label>
+                <select name="subject_id" class ="form-control" required>
+                    @foreach($subjects as $subject)
+                        <option value="{{$subject->id}}">
+                            {{$subject->subjectname}}
                         </option>
                     @endforeach
                 </select>
-                <br>
-
+                 <br>
 
                 <label>Password</label>
                 <input type="password" class="form-control"  name="password"  placeholder="Create and Enter Password" required>

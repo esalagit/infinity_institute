@@ -29,7 +29,12 @@
                 <label>Subject Name</label>
                 <input type="text" class="form-control" name="subjectname"  placeholder="Enter Subject Name" required>
                 <br>
-
+               <label>Teacher's Name</label>
+                <select name="teacher_id" class="form-control" required>
+                    @foreach($teachers as $teacher)
+                        <option value="{{$teacher->id}}">{{$teacher->teachername}}</option>
+                    @endforeach
+                </select>
 
                 <button type="submit" class="btn btn-success w-75 mt-5">Register Subject</button>
             </form>

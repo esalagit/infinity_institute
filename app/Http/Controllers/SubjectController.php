@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Exports\SubjectExport;
 use App\Models\Subject;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SubjectController extends Controller
 {
     public function subjectregiview(){
-        return view('subjectregiform');
+        $teachers = Teacher::all();
+        return view('subjectregiform',compact('teachers'));
     }
 
     public function subjectlistview(){
-        $subjects = Subject::all();
+
+        $subjects = Subject::with('techname')->get();
+
         return view('subject_list',compact('subjects'));
     }
 
@@ -23,13 +27,20 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         try {
-            Subject::query()->create([
+            $validated = $request->validate([
 
-                'subjectid' => $request->subjectid,
-                'subjectname' => $request->subjectname,
-
-
+                'subjectid' => 'required|string|max:255',
+                'subjectname' => 'required|string|max:255',
+                'teacher_id' => 'required|exists:teachers,id',
             ]);
+           Subject::create([
+               'subjectid' => $validated['subjectid'],
+               'subjectname' => $validated['subjectname'],
+               'teacher_id' => $validated['teacher_id'],
+           ]);
+
+
+
             return redirect()->route('subject.subjectlistview');
         } catch (\Exception $e) {
             return $e;
@@ -39,23 +50,30 @@ class SubjectController extends Controller
         $subjects = Subject::query()
             ->where('id',$id)
             ->first();
-        return view('subjectupdateform',compact('subjects'));
+        $teachers = Teacher::all();
+        return view('subjectupdateform',compact('subjects','teachers'));
 
     }
 
     public function update(Request $request)
     {
         try {
-            Subject::query()
-            ->where('id',$request->id)
-            ->update([
-
-                'subjectid' => $request->subjectid,
-                'subjectname' => $request->subjectname,
-
-
-
+            $validated = $request->validate([
+                'id' => 'required|exists:subjects,id',
+                'subjectid' => 'required|string|max:255',
+                'subjectname' => 'required|string|max:255',
+                'teacher_id' => 'required|exists:teachers,id',
             ]);
+          Subject::where('id',$validated['id'])->update([
+              'subjectid' => $validated['subjectid'],
+              'subjectname' => $validated['subjectname'],
+              'teacher_id' => $validated['teacher_id'],
+
+          ]);
+
+
+
+
             return redirect()->route('subject.subjectlistview');
         } catch (\Exception $e) {
             return $e;

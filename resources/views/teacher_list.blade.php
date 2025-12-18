@@ -11,6 +11,10 @@ All Teachers In Institute
     <div class="row">
         <div class="col-12">
             <h1>Teachers List</h1>
+
+            <a href="{{ route('teacher.export') }}" class="btn btn-success mb-2 ">
+                Export Excel
+            </a>
         </div>
         <div class="col-12">
             <table class="table" id="teacherTable">
@@ -23,13 +27,8 @@ All Teachers In Institute
                     <th>Email</th>
                     <th>Phone NO 1</th>
                     <th>Phone NO 2</th>
-                    <th>Course 1</th>
-                    <th>Course 2</th>
-                    <th>Subject 1</th>
-                    <th>Subject 2</th>
-                    <th>Subject 3</th>
-                    <th>Grade</th>
-                    <th>Class Name</th>
+                    <th>Teaching grade</th>
+                    <th>Teaching Subject</th>
                     <th>Actions</th>
 
                 </tr>
@@ -43,18 +42,13 @@ All Teachers In Institute
                 <tr>
 
                     <td>{{$teacher->tid}}</td>
-                    <td>{{$teacher->name}}</td>
+                    <td>{{$teacher->teachername}}</td>
                     <td>{{$teacher->address}}</td>
                     <td>{{$teacher->email}}</td>
                     <td>{{$teacher->phone1}}</td>
                     <td>{{$teacher->phone2}}</td>
-                    <td>{{$teacher->course1}}</td>
-                    <td>{{$teacher->course2}}</td>
-                    <td>{{$teacher->subject1}}</td>
-                    <td>{{$teacher->subject2}}</td>
-                    <td>{{$teacher->subject3}}</td>
-                    <td>{{$teacher->grade}}</td>
-                    <td>{{$teacher->class}}</td>
+                    <td>{{$teacher->teachergrade ? $teacher -> teachergrade->gradename:'N/A'}}</td>
+                    <td>{{$teacher->teachersubject ? $teacher-> teachersubject -> subjectname:'N/A'}}</td>
                     <td>
                         <a href="{{route('teacher.edit',$teacher->id)}}" class="btn btn-dark btn-sm mb-2">Update</a>
 

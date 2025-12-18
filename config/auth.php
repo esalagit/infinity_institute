@@ -40,10 +40,20 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
         'student' => [
             'driver' => 'session',
-            'provider' => 'students',
+            'provider' => 'users',
         ],
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
     ],
 
     /*
@@ -68,10 +78,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'students' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Student::class,
-        ],
+
 
         // 'users' => [
         //     'driver' => 'database',

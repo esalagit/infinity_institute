@@ -22,17 +22,13 @@
 
         <div class="justify-content-end">
             @auth
-            <span class="d-none d-md-inline">{{auth()->user()->name}}</span>
 
-            <img
-                src="{{asset('storage/'.auth()->user()->nicf)}} "
-                class="user-image rounded-circle shadow"
-                alt="User Image"
-                width="40"
-                height="40"
-            />
+                <a href="{{route('logout')}}" class="btn btn-dark btn-sm mb-2">LogOut</a>
+
+
+
             @else
-                <a href="{{ route('login.loginwindow') }}" class="btn btn-primary">Login</a>
+                <a href="{{ route('login.loginwindow') }}" class="btn btn-danger">Login</a>
             @endauth
 
         </div>

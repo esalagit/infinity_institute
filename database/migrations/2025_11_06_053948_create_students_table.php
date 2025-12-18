@@ -22,8 +22,7 @@ return new class extends Migration
             $table->string('nicf');
             $table->string('nicb');
             $table->integer('pphone');
-            $table->string('course');
-            $table->integer('gradename');
+            $table->string('subjectname');
             $table->string('password');
             $table->timestamps();
         });

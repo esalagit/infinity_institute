@@ -32,9 +32,7 @@ All Students In Institute
                     <th>Phone NO 1</th>
                     <th>Phone NO 2</th>
                     <th>Parent's Phone</th>
-                    <th>Course</th>
-                    <th>Grade</th>
-                    <th>Class</th>
+                    <th>Subject</th>
                     <th>Actions</th>
 
                 </tr>
@@ -54,9 +52,8 @@ All Students In Institute
                     <td>{{$student->phone1}}</td>
                     <td>{{$student->phone2}}</td>
                     <td>{{$student->pphone}}</td>
-                    <td>{{$student->course}}</td>
-                    <td>{{$student->gradeview ? $student-> gradeview->gradename: 'N/A' }}</td>
-                    <td>{{$student->class}}</td>
+                    <td>{{$student->subname ? $student -> subname->subjectname: 'N/A'}}</td>
+
                     <td>
                         <a href="{{route('student.edit',$student->id)}}" class="btn btn-dark btn-sm mb-2">Update</a>
 

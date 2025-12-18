@@ -26,13 +26,13 @@
                 <input type="text" class="form-control" name="tid"  placeholder="Enter Teacher ID" required>
                 <br>
                 <label>Teacher Full Name</label>
-                <input type="text" class="form-control" name="name"  placeholder="Enter FULL Name" required>
+                <input type="text" class="form-control" name="teachername"  placeholder="Enter FULL Name" required>
                 <br>
                 <label>Address</label>
                 <input type="text"  class="form-control" name="address"  placeholder="Enter Address" required>
                 <br>
                 <label>Email</label>
-                <input type="text" class="form-control" name="email"  placeholder="Enter Email" required>
+                <input type="email" class="form-control" name="email"  placeholder="Enter Email" required>
                 <br>
                 <label>Phone No</label>
                 <input type="number" class="form-control" name="phone1"  placeholder="Enter Phone No 1" required>
@@ -45,26 +45,29 @@
                 <label>NIC Photo Back</label>
                 <input type="file" class="form-control" name="nicb"  placeholder="Upload NIC Front" required>
                 <br>
-                <label>Course 1</label>
-                <input type="text" class="form-control" name="course1"  placeholder="Enter Course Name" required>
+
+
+                <label>Teacher's Grade</label>
+                <select name="grade_id" class="form-control" required>
+                    @foreach($grades as $grade)
+                        <option value="{{$grade->id}}"> {{$grade->gradename}}</option>
+                    @endforeach
+                </select>
                 <br>
-                <label>Course 2</label>
-                <input type="text" class="form-control" name="course2"  placeholder="Enter Course 2 Name" >
+
+
+
+
+                <label>Teaching Subject</label>
+               <select name="subject_id" class="form-control" required>
+                   @foreach($subjects as $subject)
+                       <option value="{{$subject->id}}"> {{$subject->subjectname}}</option>
+                   @endforeach
+               </select>
                 <br>
-                <label>Subject 1</label>
-                <input type="text" class="form-control" name="subject1"  placeholder="Enter your subject" required>
-                <br>
-                <label>Subject 2</label>
-                <input type="text" class="form-control" name="subject2"  placeholder="Enter your subject 2">
-                <br>
-                <label>Subject 3</label>
-                <input type="text" class="form-control" name="subject3"  placeholder="Enter your subject 3">
-                <br>
-                <label>Grade</label>
-                <input type="text" class="form-control" name="grade"  placeholder="Enter Grade" required>
-                <br>
-                <label>Class Name</label>
-                <input type="text" class="form-control" name="class"  placeholder="Enter Class Name" required>
+
+                <label>Password</label>
+                <input type="password" class="form-control"  name="password"  placeholder="Create and Enter Password" required>
                 <br>
 
                 <button type="submit" class="btn btn-success w-75 mt-5">Register Teacher</button>

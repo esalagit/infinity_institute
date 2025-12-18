@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\GradeController;
@@ -21,10 +22,18 @@ use App\Http\Controllers\StudentController;
 
 Route::get('/',[LoginController::class,'loginview'])->name('login.loginwindow');
 Route::post('/login-check',[LoginController::class,'logincheck'])->name('login.check');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::prefix('student')->group(function(){
-    Route::middleware('auth:student')->group(function() {
-        Route::get('/welcome', [StudentController::class, 'welcome_view'])->name('student.welcome');
+
+
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
+Route::get('/welcome', [AdminController::class, 'dashboardview'])->name('dashboard.welcome');
+
+});
+
+
+    Route::middleware(['auth', 'role:student'])->prefix('student')->group(function(){
+
         Route::get('/register', [StudentController::class, 'studentformview'])->name('student.sregiform');
         Route::post('/save', [StudentController::class, 'store'])->name('student.stsave');
         Route::get('/list', [StudentController::class, 'studentlistview'])->name('student.studentlistview');
@@ -34,16 +43,18 @@ Route::prefix('student')->group(function(){
         Route::get('/scardlist', [StudentController::class, 'student_image_view'])->name('student.img_card');
         Route::get('/export', [StudentController::class, 'export'])->name('student.export');
 
-    });
+
 });
 
-Route::prefix('teacher')->group(function(){
+Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->group(function(){
+
     Route::get('/register',[TeacherController::class,'teacherformview'])->name('teacher.tregiform');
     Route::post('/save',[TeacherController::class,'store'])->name('teacher.tsave');
     Route::get('/list',[TeacherController::class,'teacherlistview'])->name('teacher.teacherlistview');
     Route::get('/delete/{id}',[TeacherController::class,'delete'])->name('teacher.delete');
     Route::get('/edit/{id}',[TeacherController::class,'edit'])->name('teacher.edit');
     Route::post('/update',[TeacherController::class,'update'])->name('teacher.update');
+    Route::get('/export', [TeacherController::class, 'export'])->name('teacher.export');
 });
 
 
@@ -92,3 +103,5 @@ Route::prefix('grade')->group(function(){
     Route::get('/delete/{id}',[GradeController::class,'delete'])->name('grade.delete');
     Route::get('/export', [GradeController::class, 'export'])->name('grade.export');
 });
+
+

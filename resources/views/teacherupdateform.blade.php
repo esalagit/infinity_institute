@@ -27,7 +27,7 @@
                 <input type="text" class="form-control"  value="{{$teacher->tid}}" name="tid"  placeholder="Enter Teacher ID" required>
                 <br>
                 <label>Teacher Full Name</label>
-                <input type="text" class="form-control"  value="{{$teacher->name}}" name="name"  placeholder="Enter FULL Name" required>
+                <input type="text" class="form-control"  value="{{$teacher->teachername}}" name="teachername"  placeholder="Enter FULL Name" required>
                 <br>
                 <label>Address</label>
                 <input type="text"  class="form-control" value="{{$teacher->address}}" name="address"  placeholder="Enter Address" required>
@@ -40,27 +40,22 @@
                 <br>
                 <input type="number" class="form-control" value="{{$teacher->phone2}}" name="phone2"  placeholder="Enter Phone No 2" required>
                 <br>
-                <label>Course 1</label>
-                <input type="text" class="form-control" value="{{$teacher->course1}}" name="course1"  placeholder="Enter Course Name" required>
+                <label>Teacher's Grade</label>
+                <select name="grade_id" class="form-control" required>
+                    @foreach($grades as $grade)
+                        <option value="{{$grade->id}}"> {{$grade->gradename}}</option>
+                    @endforeach
+                </select>
                 <br>
-                <label>Course 2</label>
-                <input type="text" class="form-control" value="{{$teacher->course2}}" name="course2"  placeholder="Enter Course 2 Name" >
+
+                <label>Teaching Subject</label>
+                <select name="subject_id" class="form-control" required>
+                    @foreach($subjects as $subject)
+                        <option value="{{$subject->id}}"> {{$subject->subjectname}}</option>
+                    @endforeach
+                </select>
                 <br>
-                <label>Subject 1</label>
-                <input type="text" class="form-control" value="{{$teacher->subject1}}" name="subject1"  placeholder="Enter your subject" required>
-                <br>
-                <label>Subject 2</label>
-                <input type="text" class="form-control" value="{{$teacher->subject2}}" name="subject2"  placeholder="Enter your subject 2">
-                <br>
-                <label>Subject 3</label>
-                <input type="text" class="form-control" value="{{$teacher->subject3}}" name="subject3"  placeholder="Enter your subject 3">
-                <br>
-                <label>Grade</label>
-                <input type="text" class="form-control" value="{{$teacher->grade}}" name="grade"  placeholder="Enter Grade" required>
-                <br>
-                <label>Class Name</label>
-                <input type="text" class="form-control" value="{{$teacher->class}}" name="class"  placeholder="Enter Class Name" required>
-                <br>
+
 
                 <button type="submit" class="btn btn-success w-75 mt-5">Update Teacher</button>
             </form>

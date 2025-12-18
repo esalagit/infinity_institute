@@ -23,37 +23,35 @@
                 @csrf
 
 
-                <input type="hidden" name="id" value="{{$student->id}}">
+                <input type="hidden" name="id" value="{{$students->id}}">
                 <label>Student ID</label>
-                <input type="text" name="sid"  placeholder="Enter Student ID" value="{{$student->sid}}" >
+                <input type="text" name="sid"  placeholder="Enter Student ID" value="{{$students->sid}}" >
                 <br>
                 <label>Full Name</label>
-                <input type="text" name="name"  placeholder="Enter FULL Name" value="{{$student->name}}">
+                <input type="text" name="name"  placeholder="Enter FULL Name" value="{{$students->name}}">
                 <br>
                 <label>Address</label>
-                <input type="text" name="address"  placeholder="Enter Address" value="{{$student->address}}" >
+                <input type="text" name="address"  placeholder="Enter Address" value="{{$students->address}}" >
                 <br>
                 <label>Email</label>
-                <input type="text" name="email"  placeholder="Enter Email" value="{{$student->email}}">
+                <input type="text" name="email"  placeholder="Enter Email" value="{{$students->email}}">
                 <br>
                 <label>Phone No 1</label>
-                <input type="number" name="phone1"  placeholder="Enter Phone No 1" value="{{$student->phone1}}" >
+                <input type="number" name="phone1"  placeholder="Enter Phone No 1" value="{{$students->phone1}}" >
                 <br>
                 <label>Phone No 2</label>
-                <input type="number" name="phone2"  placeholder="Enter Phone No 2" value="{{$student->phone2}}" >
+                <input type="number" name="phone2"  placeholder="Enter Phone No 2" value="{{$students->phone2}}" >
                 <br>
                 <label>Parent's Contact No</label>
-                <input type="number" name="pphone"  placeholder="Enter Parent's Phone No" value="{{$student->pphone}}" >
+                <input type="number" name="pphone"  placeholder="Enter Parent's Phone No" value="{{$students->pphone}}" >
                 <br>
-                <label>Course</label>
-                <input type="text" name="course"  placeholder="Select Course" value="{{$student->course}}">
-                <br>
-                <label>Grade</label>
-                <select name="grade_id" class="form-control" required>
-                    @foreach ($grades as $grade)
 
-
-                        <option value="{{ $grade->id }}">{{ $grade->gradename}}</option>
+                <label>Subject</label>
+                <select name="subject_id" class ="form-control" required>
+                    @foreach($subjects as $subject)
+                        <option value="{{$subject->id}}">
+                            {{$subject->subjectname}}
+                        </option>
                     @endforeach
                 </select>
                 <br>

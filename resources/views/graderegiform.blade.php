@@ -29,7 +29,9 @@
                         @foreach ($classes as $class)
 
 
-                            <option value="{{ $class->id }}">{{ $class->classname}}</option>
+                            <option value="{{ $class->id }}">
+                                {{ $class->classname}}
+                            </option>
                         @endforeach
                     </select>
                     <br>

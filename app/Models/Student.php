@@ -23,16 +23,16 @@ protected $fillable=[
     'nicf',
     'nicb',
     'pphone',
-    'course',
-    'grade_id',
+    'subject_id',
     'password'
 ];
 
+public function subname(){
+    return $this->belongsTo(Subject::class,'subject_id');
+}
 
-    public function gradeview()
-    {
-        return $this->belongsTo(Grade::class, 'grade_id');
-    }
+
+
 
 
 

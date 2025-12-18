@@ -24,6 +24,7 @@ All Subjects
 
                     <th>Subject ID </th>
                     <th>Subject Name </th>
+                    <th>Teacher's Name </th>
                     <th>Actions</th>
 
                 </tr>
@@ -39,6 +40,7 @@ All Subjects
 
                     <td  class="bg-primary">{{$subject->subjectid}}</td>
                     <td  class="bg-primary">{{$subject->subjectname}}</td>
+                    <td  class="bg-primary">{{$subject->techname ? $subject->techname->teachername : 'N/A'}}</td>
 
 
                     <td>

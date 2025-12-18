@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grade;
+
+use App\Models\Course;
 use App\Models\Student;
+use App\Models\Subject;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Exports\StudentsExport;
@@ -13,18 +17,16 @@ class StudentController extends Controller
 {
 
 
-    public function welcome_view(){
-        return view('welcome');
-    }
+
     public function studentformview(){
 
-//        $grades = Grade::all();
-        $grades = Grade::with('classroom')->get();
-        return view('studentregiform',compact('grades'));
+  $subjects = Subject::all();
+        return view('studentregiform',compact('subjects'));
     }
 
     public function studentlistview(){
-        $students = Student::all();
+//        $students = Student::all();
+        $students = Student::with('subname')->get();
         return view('student_list',compact('students'));
     }
 
@@ -42,13 +44,11 @@ class StudentController extends Controller
                 'phone1'    => 'required|digits_between:1,12',
                 'phone2'    => 'nullable|digits_between:1,12',
                 'pphone'    => 'required|digits_between:1,12',
-
+                'subject_id' => 'required|exists:subjects,id',
                 'nicf'      => 'required|image|mimes:jpg,jpeg,png|max:2048',
                 'nicb'      => 'required|image|mimes:jpg,jpeg,png|max:2048',
 
-                'course'    => 'required|string|max:255',
 
-                'grade_id'  => 'required|exists:grades,id',
 
                 'password'  => 'required|string|min:2',
             ]);
@@ -56,7 +56,7 @@ class StudentController extends Controller
             $imagePath1 = ImageUpload::uploadImage($request->file('nicf'), 'Student/NICF');
             $imagePath2 = ImageUpload::uploadImage($request->file('nicb'), 'Student/NICB');
 
-            Student::create([
+            $student=Student::create([
                 'sid'       => $validated['sid'],
                 'name'      => $validated['name'],
                 'address'   => $validated['address'],
@@ -66,9 +66,15 @@ class StudentController extends Controller
                 'nicf'      => $imagePath1,
                 'nicb'      => $imagePath2,
                 'pphone'    => $validated['pphone'],
-                'course'    => $validated['course'],
-                'grade_id'  => $validated['grade_id'],
+                'subject_id'   => $validated['subject_id'],
                 'password'  => Hash::make($validated['password']),
+            ]);
+
+            User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'user_type' => 'student',
+                'related_id' => $student->id,
             ]);
 
             return redirect()->route('student.studentlistview');
@@ -82,9 +88,11 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        $student=Student::query()->where('id',$id)->first();
-        $grades = Grade::all();
-        return view('studentupdate',compact('student','grades'));
+        $students=Student::query()->where('id',$id)->first();
+
+        $subjects = Subject::all();
+
+        return view('studentupdate',compact('students','subjects'));
 
     }
 
@@ -105,9 +113,8 @@ class StudentController extends Controller
 
                 'nicf'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
                 'nicb'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+                'subject_id'   => 'required|exists:subjects,id',
 
-                'course'    => 'required|string|max:255',
-                'grade_id'  => 'required|exists:grades,id',
             ]);
 
 
@@ -138,8 +145,7 @@ class StudentController extends Controller
                 'nicf'      => $imagePath1,
                 'nicb'      => $imagePath2,
                 'pphone'    => $validated['pphone'],
-                'course'    => $validated['course'],
-                'grade_id'  => $validated['grade_id'],
+                'subject_id'   => $validated['subject_id'],
             ]);
 
             return redirect()->route('student.studentlistview');

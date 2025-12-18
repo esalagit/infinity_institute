@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Exports\GradeExport;
 use App\Models\Classes;
 use App\Models\Grade;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -14,6 +15,7 @@ class GradeController extends Controller
     public function graderegiview()
 
     {   $classes = Classes::all();
+
 
         return view('graderegiform',compact('classes'));
     }

@@ -11,19 +11,28 @@ class Teacher extends Model
     protected $fillable=[
 
         'tid',
-        'name',
+        'teachername',
         'address',
         'email',
         'phone1',
         'phone2',
         'nicf',
         'nicb',
-        'course1',
-        'course2',
-        'subject1',
-        'subject2',
-        'subject3',
-        'grade',
-        'class'
+        'grade_id',
+        'subject_id',
+        'password'
+
     ];
+
+    public function subjects(){
+        return $this ->hasMany(Subject::class,'teacher_id');
+    }
+
+    public function teachersubject(){
+        return $this->belongsTo(Subject::class,'subject_id');
+    }
+
+   public function teachergrade(){
+        return $this->belongsTo(Grade::class,'grade_id');
+   }
 }
