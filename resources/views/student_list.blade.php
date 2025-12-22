@@ -17,9 +17,29 @@ All Students In Institute
         <div class="col-12">
 
 
-            <a href="{{ route('student.export') }}" class="btn btn-success mb-2 ">
+
+            <a href="{{route('student.export')}}" class="btn btn-success mb-2 ">
                 Export Excel
             </a>
+
+            <form action="{{route('student.import')}}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+         @csrf
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <input type="file" name="excel" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                        <input type="submit" value="import" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+
 
             <table id="studentsTable" class="table table-bordered table-striped">
                 <thead>
@@ -52,7 +72,7 @@ All Students In Institute
                     <td>{{$student->phone1}}</td>
                     <td>{{$student->phone2}}</td>
                     <td>{{$student->pphone}}</td>
-                    <td>{{$student->subname ? $student -> subname->subjectname: 'N/A'}}</td>
+                    <td>{{$student->subject ? $student -> subject->subjectname: 'N/A'}}</td>
 
                     <td>
                         <a href="{{route('student.edit',$student->id)}}" class="btn btn-dark btn-sm mb-2">Update</a>

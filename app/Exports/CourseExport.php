@@ -3,26 +3,32 @@
 namespace App\Exports;
 
 use App\Models\Course;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class CourseExport implements FromCollection,WithHeadings
+class CourseExport implements  WithHeadings, WithMapping, FromQuery
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+
+    public function query()
     {
-       return Course::select(
-           'courseid',
-           'coursename',
-           "subject_id"
-       )->get();
+      return Course::query();
     }
     public function headings(): array
-    {return[
-        'Course ID',
-        'Course Name',
-        'Subject ID'
-    ];}
+    {
+        return [
+        'courseid',
+        'coursename',
+        'subject_id'
+        ];
+    }
+
+    public function map($row): array
+    {
+        return [
+            $row->courseid,
+            $row->coursename,
+            $row->subject_id
+        ];
+    }
 }

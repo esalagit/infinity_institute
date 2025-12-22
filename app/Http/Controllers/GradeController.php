@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Exports\GradeExport;
+use App\Imports\GradeImport;
 use App\Models\Classes;
 use App\Models\Grade;
-use App\Models\Teacher;
+
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -101,9 +102,18 @@ class GradeController extends Controller
         (\Exception $e){return $e;}
     }
 
-    public function export(){
-        return Excel::download(new GradeExport,'grade.xlsx');
+
+
+    public function importExcel(Request $request)
+    {
+
+        Excel::import(new GradeImport(), $request->file('excel'));
+        return redirect()->route('grade.gradelistview');
+
     }
 
-
+    public function exportExcel(Request $request)
+    {
+        return Excel::download(new GradeExport, 'grades.xlsx');
+    }
 }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Exports\TeacherExport;
+
+use App\Imports\TeachersImport;
 use App\Models\Grade;
 use App\Models\Subject;
 use App\Models\Teacher;
@@ -168,8 +171,23 @@ public function delete($id){
 
 }
 
-public function export()
-{
-    return Excel::download(new TeacherExport,'teacher.xlsx');
-}
+    public function importExcel(Request $request)
+    {
+
+        Excel::import(new TeachersImport, $request->file('excel'));
+        return redirect()->route('teacher.teacherlistview');
+
+    }
+
+
+    public function exportExcel(Request $request)
+    {
+        return Excel::download(new TeacherExport() , 'teachers.xlsx');
+    }
+
+
+
+
+
+
 }

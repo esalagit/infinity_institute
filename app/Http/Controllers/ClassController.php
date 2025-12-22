@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Exports\ClassExport;
+use App\Imports\ClassImport;
 use App\Models\Classes;
 
 
@@ -79,8 +80,18 @@ class ClassController extends Controller
         (\Exception $e){return $e;}
     }
 
-    public function export(){
-        return Excel::download(new ClassExport,'class.xlsx');
+    public function importExcel(Request $request)
+    {
+
+        Excel::import(new ClassImport(), $request->file('excel'));
+        return redirect()->route('class.classlistview');
+
     }
+
+    public function exportExcel(Request $request)
+    {
+        return Excel::download(new ClassExport, 'classes.xlsx');
+    }
+
 
 }

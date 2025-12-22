@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Course;
+
 use App\Models\Student;
 use App\Models\Subject;
-use App\Models\Teacher;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Exports\StudentsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\StudentsImport;
 
 class StudentController extends Controller
 {
@@ -26,7 +27,7 @@ class StudentController extends Controller
 
     public function studentlistview(){
 //        $students = Student::all();
-        $students = Student::with('subname')->get();
+        $students = Student::with('subject')->get();
         return view('student_list',compact('students'));
     }
 
@@ -184,9 +185,23 @@ class StudentController extends Controller
         }
     }
 
-    public function export()
+
+
+
+public function importExcel(Request $request)
     {
-        return Excel::download(new StudentsExport, 'students.xlsx');
+
+        Excel::import(new StudentsImport, $request->file('excel'));
+        return redirect()->route('student.studentlistview');
+
     }
+
+
+    public function exportExcel(Request $request)
+    {
+       return Excel::download(new StudentsExport, 'students.xlsx');
+    }
+
+
 
 }

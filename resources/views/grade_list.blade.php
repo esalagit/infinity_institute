@@ -15,6 +15,23 @@ All Grades
             <a href="{{ route('grade.export') }}" class="btn btn-success mb-2 ">
                 Export Excel
             </a>
+
+            <form action="{{ route('grade.import') }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+                @csrf
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <input type="file" name="excel" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="submit" value="import" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+
+            </form>
         </div>
         <div class="col-12">
             <table class="table" id="gradeTable">

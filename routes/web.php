@@ -41,8 +41,8 @@ Route::get('/welcome', [AdminController::class, 'dashboardview'])->name('dashboa
         Route::get('/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
         Route::post('/update', [StudentController::class, 'update'])->name('student.update');
         Route::get('/scardlist', [StudentController::class, 'student_image_view'])->name('student.img_card');
-        Route::get('/export', [StudentController::class, 'export'])->name('student.export');
-
+        Route::get('/export', [StudentController::class, 'exportExcel'])->name('student.export');
+        Route::post('/import', [StudentController::class, 'importExcel'])->name('student.import');
 
 });
 
@@ -55,6 +55,8 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->group(function()
     Route::get('/edit/{id}',[TeacherController::class,'edit'])->name('teacher.edit');
     Route::post('/update',[TeacherController::class,'update'])->name('teacher.update');
     Route::get('/export', [TeacherController::class, 'export'])->name('teacher.export');
+    Route::get('/export', [TeacherController::class, 'exportExcel'])->name('teacher.export');
+    Route::post('/import', [TeacherController::class, 'importExcel'])->name('teacher.import');
 });
 
 
@@ -66,7 +68,8 @@ Route::prefix('subject')->group(function(){
     Route::get('/delete/{id}',[SubjectController::class,'delete'])->name('subject.delete');
     Route::get('/edit/{id}',[SubjectController::class,'edit'])->name('subject.edit');
     Route::post('/update',[SubjectController::class,'update'])->name('subject.update');
-    Route::get('/export', [SubjectController::class, 'export'])->name('subject.export');
+    Route::get('/export', [SubjectController::class, 'exportExcel'])->name('subject.export');
+    Route::post('/import', [SubjectController::class, 'importExcel'])->name('subject.import');
 });
 
 Route::prefix('course')->group(function(){
@@ -77,7 +80,8 @@ Route::prefix('course')->group(function(){
     Route::get('/edit/{id}',[CourseController::class,'edit'])->name('course.edit');
     Route::post('/update',[CourseController::class,'update'])->name('course.update');
     Route::get('/export', [CourseController::class, 'export'])->name('course.export');
-
+    Route::get('/export', [CourseController::class, 'exportExcel'])->name('course.export');
+    Route::post('/import', [CourseController::class, 'importExcel'])->name('course.import');
 });
 
 
@@ -89,7 +93,8 @@ Route::prefix('class')->group(function(){
     Route::get('/edit/{id}',[ClassController::class,'edit'])->name('class.edit');
     Route::post('/update',[ClassController::class,'update'])->name('class.update');
     Route::get('/delete/{id}',[ClassController::class,'delete'])->name('class.delete');
-    Route::get('/export', [ClassController::class, 'export'])->name('class.export');
+    Route::get('/export', [ClassController::class, 'exportExcel'])->name('class.export');
+    Route::post('/import', [ClassController::class, 'importExcel'])->name('class.import');
 });
 
 
@@ -101,7 +106,8 @@ Route::prefix('grade')->group(function(){
     Route::get('/edit/{id}',[GradeController::class,'edit'])->name('grade.edit');
     Route::post('/update',[GradeController::class,'update'])->name('grade.update');
     Route::get('/delete/{id}',[GradeController::class,'delete'])->name('grade.delete');
-    Route::get('/export', [GradeController::class, 'export'])->name('grade.export');
+    Route::get('/export', [GradeController::class, 'exportExcel'])->name('grade.export');
+    Route::post('/import', [GradeController::class, 'importExcel'])->name('grade.import');
 });
 
 

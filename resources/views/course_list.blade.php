@@ -18,6 +18,23 @@ All Courses
                 Export Excel
             </a>
 
+            <form action="{{ route('course.import') }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+                @csrf
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <input type="file" name="excel" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="submit" value="import" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
         <div class="col-12">
             <table class="table" id="courseTable">
                 <thead>

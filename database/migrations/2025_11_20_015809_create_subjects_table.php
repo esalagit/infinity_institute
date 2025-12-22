@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->String('subjectid');
             $table->String('subjectname');
+            $table->String('teacher_id');
 
             $table->timestamps();
         });

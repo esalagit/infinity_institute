@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\SubjectExport;
+use App\Imports\SubjectImport;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -92,8 +93,17 @@ class SubjectController extends Controller
         }
     }
 
-    public function export(){
-        return Excel::download(new SubjectExport,'subject.xlsx');
+    public function importExcel(Request $request)
+    {
+
+        Excel::import(new SubjectImport(), $request->file('excel'));
+        return redirect()->route('subject.subjectlistview');
+
+    }
+
+    public function exportExcel(Request $request)
+    {
+        return Excel::download(new SubjectExport, 'subjects.xlsx');
     }
 
 }

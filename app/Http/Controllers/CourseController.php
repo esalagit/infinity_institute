@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Exports\CourseExport;
+use App\Imports\CourseImport;
 use App\Models\Course;
 
 use App\Models\Subject;
@@ -89,9 +90,20 @@ class CourseController extends Controller
      (\Exception $e){return $e;}
     }
 
-public function export(){
-       return Excel::download(new CourseExport(), 'courses.xlsx');
 
-}
+    public function importExcel(Request $request)
+    {
+
+        Excel::import(new CourseImport(), $request->file('excel'));
+        return redirect()->route('course.courselistview');
+
+    }
+
+    public function exportExcel(Request $request)
+    {
+        return Excel::download(new CourseExport, 'courses.xlsx');
+    }
+
+
 
 }

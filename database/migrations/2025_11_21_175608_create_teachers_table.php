@@ -21,7 +21,8 @@ return new class extends Migration
             $table->integer('phone2');
             $table->string('nicf');
             $table->string('nicb');
-            $table->string('techgrade');
+            $table->string('gradename');
+            $table->string('subjectname');
             $table->string('password');
             $table->timestamps();
         });

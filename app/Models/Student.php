@@ -27,7 +27,7 @@ protected $fillable=[
     'password'
 ];
 
-public function subname(){
+public function subject(){
     return $this->belongsTo(Subject::class,'subject_id');
 }
 
