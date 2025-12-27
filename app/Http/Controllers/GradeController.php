@@ -10,6 +10,7 @@ use App\Models\Grade;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class GradeController extends Controller
 {
@@ -114,6 +115,21 @@ class GradeController extends Controller
 
     public function exportExcel(Request $request)
     {
-        return Excel::download(new GradeExport, 'grades.xlsx');
+        $search = $request->get('search');
+
+        return Excel::download(new GradeExport($search), 'grades.xlsx');
     }
+
+
+    public function exportPdf()
+    {
+        $grades = Grade::with('classroom')->get();
+
+    $pdf = Pdf::loadView('grade_list_pdf', compact('grades'));
+
+    return $pdf->download('grade.pdf');
+
+
+}
+
 }

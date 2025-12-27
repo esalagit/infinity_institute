@@ -20,7 +20,7 @@
 
         <div class="col-8 d-flex justify-content-center" >
 
-            <form method="post" action="{{route('student.stsave')}}" class="registration-form w-100" enctype="multipart/form-data">
+            <form method="post" action="{{route('student.stsave')}}" class="registration-form w-50" enctype="multipart/form-data">
                 @csrf
                 <label>Student ID</label>
                 <input type="text" class="form-control"  name="sid" placeholder="Enter Regi No" required>

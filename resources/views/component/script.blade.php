@@ -233,69 +233,104 @@
 <!-- Initialize DataTable LAST -->
 <script>
     $(document).ready(function () {
-        $('#studentsTable').DataTable({
-            pageLength: 10,
-            lengthMenu: [5,10,15,20,25],
-            ordering: true,
-            searching: true
+
+        let table = $('#studentsTable').DataTable();
+
+        $('#exportstudentExcel').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('student.export') }}?search=" + searchValue;
+            window.location.href = url;
         });
+
     });
 </script>
 
 <script>
     $(document).ready(function () {
-        $('#courseTable').DataTable({
-            pageLength: 10,
-            lengthMenu: [5,10,15,20,25],
-            ordering: true,
-            searching: true
+
+        let table = $('#courseTable').DataTable();
+
+        $('#exportcourseExcel').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('course.export') }}?search=" + searchValue;
+            window.location.href = url;
         });
+
+    });
+</script>
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        let table = $('#subjectTable').DataTable();
+
+        $('#exportsubjectExcel').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('subject.export') }}?search=" + searchValue;
+            window.location.href = url;
+        });
+
     });
 </script>
 
 <script>
     $(document).ready(function () {
-        $('#subjectTable').DataTable({
-            pageLength: 10,
-            lengthMenu: [5,10,15,20,25],
-            ordering: true,
-            searching: true
-        });
-    });
-</script>
 
-<script>
-    $(document).ready(function () {
-        $('#gradeTable').DataTable({
-            pageLength: 10,
-            lengthMenu: [5,10,15,20,25],
-            ordering: true,
-            searching: true
+        let table = $('#gradeTable').DataTable();
+
+        $('#exportgradeExcel').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('grade.export') }}?search=" + searchValue;
+            window.location.href = url;
         });
+
     });
 </script>
 
 
+
 <script>
     $(document).ready(function () {
-        $('#classTable').DataTable({
-            pageLength: 10,
-            lengthMenu: [5,10,15,20,25],
-            ordering: true,
-            searching: true
+
+        let table = $('#classTable').DataTable();
+
+        $('#exportclassExcel').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('class.export') }}?search=" + searchValue;
+            window.location.href = url;
         });
+
     });
 </script>
 <script>
     $(document).ready(function () {
-        $('#teacherTable').DataTable({
-            pageLength: 10,
-            lengthMenu: [5,10,15,20,25],
-            ordering: true,
-            searching: true
+
+        let table = $('#teacherTable').DataTable();
+
+        $('#exportteacherExcel').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('teacher.export') }}?search=" + searchValue;
+            window.location.href = url;
         });
+
     });
 </script>
+
+
+
+
+
 @stack('script')
 <!--end::Script-->
 

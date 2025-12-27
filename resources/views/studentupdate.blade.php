@@ -13,10 +13,10 @@
 
 
 
-    <div class="container">
+    <div class="container mt-3">
 
-
-        <div class="col-6">
+        <div class="row">
+            <div class="col-8 d-flex justify-content-center" >
 
 
             <form method="POST" action="{{route('student.update')}}" class="registration-form w-50">
@@ -25,25 +25,25 @@
 
                 <input type="hidden" name="id" value="{{$students->id}}">
                 <label>Student ID</label>
-                <input type="text" name="sid"  placeholder="Enter Student ID" value="{{$students->sid}}" >
+                <input type="text" class="form-control" name="sid"  placeholder="Enter Student ID" value="{{$students->sid}}" >
                 <br>
                 <label>Full Name</label>
-                <input type="text" name="name"  placeholder="Enter FULL Name" value="{{$students->name}}">
+                <input type="text" class="form-control" name="name"  placeholder="Enter FULL Name" value="{{$students->name}}">
                 <br>
                 <label>Address</label>
-                <input type="text" name="address"  placeholder="Enter Address" value="{{$students->address}}" >
+                <input type="text" class="form-control" name="address"  placeholder="Enter Address" value="{{$students->address}}" >
                 <br>
                 <label>Email</label>
-                <input type="text" name="email"  placeholder="Enter Email" value="{{$students->email}}">
+                <input type="text" class="form-control" name="email"  placeholder="Enter Email" value="{{$students->email}}">
                 <br>
                 <label>Phone No 1</label>
-                <input type="number" name="phone1"  placeholder="Enter Phone No 1" value="{{$students->phone1}}" >
+                <input type="number" class="form-control" name="phone1"  placeholder="Enter Phone No 1" value="{{$students->phone1}}" >
                 <br>
                 <label>Phone No 2</label>
-                <input type="number" name="phone2"  placeholder="Enter Phone No 2" value="{{$students->phone2}}" >
+                <input type="number" class="form-control" name="phone2"  placeholder="Enter Phone No 2" value="{{$students->phone2}}" >
                 <br>
                 <label>Parent's Contact No</label>
-                <input type="number" name="pphone"  placeholder="Enter Parent's Phone No" value="{{$students->pphone}}" >
+                <input type="number" class="form-control" name="pphone"  placeholder="Enter Parent's Phone No" value="{{$students->pphone}}" >
                 <br>
 
                 <label>Subject</label>
@@ -59,8 +59,20 @@
                 <button type="submit" class="btn btn-warning w-75 mt-5">Update Student</button>
             </form>
 
-            <div class="row">
-                <div class="col-12">
+
+            </div>
+
+
+        </div>
+
+        <div class="col-5 justify-content-end" >
+
+
+
+        </div>
+
+
+        <div class="div col-8 mt-2">
 
 
 
@@ -68,8 +80,8 @@
 
                 </div>
             </div>
-        </div>
-    </div>
+
+
 
 
 @endsection

@@ -8,6 +8,8 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class SubjectController extends Controller
 {
@@ -100,10 +102,24 @@ class SubjectController extends Controller
         return redirect()->route('subject.subjectlistview');
 
     }
-
     public function exportExcel(Request $request)
     {
-        return Excel::download(new SubjectExport, 'subjects.xlsx');
+        $search = $request->get('search');
+
+        return Excel::download(new SubjectExport($search), 'subjects.xlsx');
     }
+
+
+
+
+    public function exportPdf()
+    {
+        $subjects = Subject::with('techname')->get();
+
+        $pdf = Pdf::loadView('subject_list_pdf', compact('subjects'));
+
+        return $pdf->download('subjects.pdf');
+    }
+
 
 }

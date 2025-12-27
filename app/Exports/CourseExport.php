@@ -10,9 +10,23 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class CourseExport implements  WithHeadings, WithMapping, FromQuery
 {
 
+    protected $search;
+
+    public function __construct($search = null)
+    {
+        $this->search = $search;
+    }
+
     public function query()
     {
-      return Course::query();
+     $query = Course::query();
+
+        if ($this->search) {
+            $query->where('courseid', 'like', '%' . $this->search . '%')
+                  ->orWhere('coursename', 'like', '%' . $this->search . '%')
+                  ->orWhere('subject_id', 'like', '%' . $this->search . '%');
+        }
+        return $query;
     }
     public function headings(): array
     {

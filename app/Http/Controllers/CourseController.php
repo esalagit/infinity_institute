@@ -10,6 +10,8 @@ use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 
 class CourseController extends Controller
@@ -101,8 +103,21 @@ class CourseController extends Controller
 
     public function exportExcel(Request $request)
     {
-        return Excel::download(new CourseExport, 'courses.xlsx');
+        $search = $request->get('search');
+        return Excel::download(new CourseExport($search), 'course.xlsx');
     }
+
+    public function exportPdf()
+    {
+        $courses = Course::with('subjectview')->get();
+
+    $pdf = Pdf::loadView('course_list_pdf', compact('courses'));
+
+    return $pdf->download('course.pdf');
+
+
+}
+
 
 
 

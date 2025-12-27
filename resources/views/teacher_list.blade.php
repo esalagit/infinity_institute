@@ -16,11 +16,15 @@ All Teachers In Institute
 
             <h1>Teachers List</h1>
 
-            <a href="{{ route('teacher.export') }}" class="btn btn-success mb-2 ">
+            <button id="exportteacherExcel" class="btn btn-success mb-2">
                 Export Excel
+            </button>
+
+            <a href="{{route('teacher.export.pdf')}}" class="btn btn-danger mb-2">
+                Export PDF
             </a>
 
-            <form action="{{route('teacher.import')}}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+            <form action="{{route('teacher.import')}}" method="post" class="mb-2" enctype="multipart/form-data" accept-charset="utf-8">
                 @csrf
                 <div class="container">
                     <div class="row">
@@ -36,6 +40,9 @@ All Teachers In Institute
                 </div>
 
             </form>
+
+
+
         </div>
         <div class="col-12">
             <table class="table" id="teacherTable">

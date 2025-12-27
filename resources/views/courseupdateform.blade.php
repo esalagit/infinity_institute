@@ -17,7 +17,7 @@
     <div class="container mt-3">
 
 <div class="row">
-        <div class="col-12 d-flex justify-content-center" >
+    <div class="col-8 d-flex justify-content-center" >
 
 
             <form method="post" action="{{route('course.update')}}" class="registration-form w-50">
@@ -49,11 +49,14 @@
 
         </div>
 
+        <div class="div col-8 mt-2">
+
         <a href="{{route('course.courselistview')}}" class="btn btn-primary">
             Go To Courses List
         </a>
 
 
+    </div>
     </div>
 
 

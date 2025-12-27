@@ -10,9 +10,23 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class GradeExport implements  WithHeadings, WithMapping, FromQuery
 {
 
+    protected $search;
+
+    public function __construct($search = null)
+    {
+        $this->search = $search;
+    }
+
     public function query()
     {
-        return Grade::query();
+       $query=Grade::query();
+
+        if ($this->search) {
+            $query->where('gradeid', 'like', '%' . $this->search . '%')
+                ->orWhere('gradename', 'like', '%' . $this->search . '%')
+                ->orWhere('class_id', 'like', '%' . $this->search . '%');
+        }
+        return $query;
     }
     public function headings(): array
     {

@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Exports\StudentsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\StudentsImport;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class StudentController extends Controller
 {
@@ -199,9 +201,20 @@ public function importExcel(Request $request)
 
     public function exportExcel(Request $request)
     {
+        $search = $request->get('search');
        return Excel::download(new StudentsExport, 'students.xlsx');
     }
 
+    public function exportPdf()
+    {
+        $students= Student::with('subject')->get();
+
+    $pdf = Pdf::loadView('student_list_pdf', compact('students'));
+
+    return $pdf->download('students.pdf');
+
+
+}
 
 
 }

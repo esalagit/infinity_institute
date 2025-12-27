@@ -10,6 +10,7 @@ use App\Models\Classes;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ClassController extends Controller
 {
@@ -90,8 +91,19 @@ class ClassController extends Controller
 
     public function exportExcel(Request $request)
     {
-        return Excel::download(new ClassExport, 'classes.xlsx');
+
+        $search = $request->get('search');
+        return Excel::download(new ClassExport($search), 'classes.xlsx');
     }
 
+    public function exportPdf()
+    {
 
+        $classes = Classes::all();
+    $pdf = Pdf::loadView('class_list_pdf',compact('classes'));
+
+    return $pdf->download('classes.pdf');
+
+
+}
 }

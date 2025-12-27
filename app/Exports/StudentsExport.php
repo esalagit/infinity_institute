@@ -9,9 +9,32 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class StudentsExport implements WithHeadings, WithMapping, FromQuery
 {
+
+
+    protected $search;
+
+    public function __construct($search = null)
+    {
+        $this->search = $search;
+    }
     public function query()
     {
-        return Student::query();
+        $query= Student::query();
+
+        if ($this->search) {
+
+            $query->where('sid', 'like', '%' . $this->search . '%')
+                ->orWhere('name', 'like', '%' . $this->search . '%')
+                ->orWhere('address', 'like', '%' . $this->search . '%')
+                ->orWhere('email', 'like', '%' . $this->search . '%')
+                ->orWhere('phone1', 'like', '%' . $this->search . '%')
+                ->orWhere('phone2', 'like', '%' . $this->search . '%')
+                ->orWhere('pphone', 'like', '%' . $this->search . '%')
+                ->orWhere('subject_id', 'like', '%' . $this->search . '%');
+
+
+        }
+        return $query;
     }
 
     public function headings(): array

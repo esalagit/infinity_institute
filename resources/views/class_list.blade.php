@@ -12,11 +12,14 @@ All Classes
         <div class="col-12">
             <h1>Classes List</h1>
 
-            <a href="{{ route('class.export') }}" class="btn btn-success mb-2 ">
+            <button id="exportclassExcel" class="btn btn-success mb-2">
                 Export Excel
+            </button>
+            <a href="{{ route('class.export.pdf') }}" class="btn btn-danger mb-2">
+                Export PDF
             </a>
 
-            <form action="{{ route('class.import') }}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+            <form action="{{ route('class.import') }}" method="post"  class="mb-2" enctype="multipart/form-data" accept-charset="utf-8">
                 @csrf
                 <div class="container">
                     <div class="row">

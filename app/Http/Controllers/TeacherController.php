@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TeacherController extends Controller
 {
@@ -182,12 +183,18 @@ public function delete($id){
 
     public function exportExcel(Request $request)
     {
-        return Excel::download(new TeacherExport() , 'teachers.xlsx');
+        $search = $request->get('search');
+        return Excel::download(new TeacherExport($search) , 'teachers.xlsx');
     }
 
 
+    public function exportPdf()
+    {
+        $teachers= Teacher::with('teachersubject')->get();
 
+        $pdf = Pdf::loadView('teachers_list_pdf', compact('teachers'));
 
-
+        return $pdf->download('teachers.pdf');
+    }
 
 }
