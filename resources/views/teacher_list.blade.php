@@ -20,9 +20,9 @@ All Teachers In Institute
                 Export Excel
             </button>
 
-            <a href="{{route('teacher.export.pdf')}}" class="btn btn-danger mb-2">
+            <button id="exportteacherPdf" class="btn btn-danger mb-2">
                 Export PDF
-            </a>
+            </button>
 
             <form action="{{route('teacher.import')}}" method="post" class="mb-2" enctype="multipart/form-data" accept-charset="utf-8">
                 @csrf

@@ -14,6 +14,12 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 
 
+
+
+
+
+
+
 class CourseController extends Controller
 {
    public function courseregiview(){
@@ -107,16 +113,26 @@ class CourseController extends Controller
         return Excel::download(new CourseExport($search), 'course.xlsx');
     }
 
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
-        $courses = Course::with('subjectview')->get();
+        $search = $request->get('search');
 
-    $pdf = Pdf::loadView('course_list_pdf', compact('courses'));
+        $courses = Course::with('subjectview')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('courseid', 'like', "%{$search}%")
+                        ->orWhere('coursename', 'like', "%{$search}%")
+                        ->orWhereHas('subjectview', function ($sq) use ($search) {
+                            $sq->where('subjectname', 'like', "%{$search}%");
+                        });
+                });
+            })
+            ->get();
 
-    return $pdf->download('course.pdf');
+        $pdf = Pdf::loadView('course_list_pdf', compact('courses'));
 
-
-}
+        return $pdf->download('courses.pdf');
+    }
 
 
 

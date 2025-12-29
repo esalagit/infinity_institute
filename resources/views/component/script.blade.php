@@ -243,6 +243,16 @@
             window.location.href = url;
         });
 
+        $('#exportstudentPdf').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('student.export.pdf') }}?search=" + searchValue;
+            window.location.href = url;
+        });
+
+
+
+
     });
 </script>
 
@@ -255,6 +265,13 @@
             let searchValue = table.search();
 
             let url = "{{ route('course.export') }}?search=" + searchValue;
+            window.location.href = url;
+        });
+
+        $('#exportcoursePdf').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('course.export.pdf') }}?search=" + searchValue;
             window.location.href = url;
         });
 
@@ -278,6 +295,14 @@
             window.location.href = url;
         });
 
+        $('#exportsubjectPdf').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('subject.export.pdf') }}?search=" + searchValue;
+            window.location.href = url;
+        });
+
+
     });
 </script>
 
@@ -290,6 +315,13 @@
             let searchValue = table.search();
 
             let url = "{{ route('grade.export') }}?search=" + searchValue;
+            window.location.href = url;
+        });
+
+        $('#exportgradePdf').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('grade.export.pdf') }}?search=" + searchValue;
             window.location.href = url;
         });
 
@@ -310,6 +342,13 @@
             window.location.href = url;
         });
 
+        $('#exportclassPdf').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('class.export.pdf') }}?search=" + searchValue;
+            window.location.href = url;
+        });
+
     });
 </script>
 <script>
@@ -321,6 +360,13 @@
             let searchValue = table.search();
 
             let url = "{{ route('teacher.export') }}?search=" + searchValue;
+            window.location.href = url;
+        });
+
+        $('#exportteacherPdf').on('click', function () {
+            let searchValue = table.search();
+
+            let url = "{{ route('teacher.export.pdf') }}?search=" + searchValue;
             window.location.href = url;
         });
 

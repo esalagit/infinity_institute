@@ -15,9 +15,9 @@ All Grades
             <button id="exportgradeExcel" class="btn btn-success mb-2">
                 Export Excel
             </button>
-            <a href="{{route('grade.export.pdf')}}" class="btn btn-danger mb-2">
-                Export PDF
-            </a>
+            <button id="exportgradePdf" class="btn btn-danger mb-2">
+                Export Grade
+            </button>
 
             <form action="{{ route('grade.import') }}" method="post" class="mb-2" enctype="multipart/form-data" accept-charset="utf-8">
                 @csrf

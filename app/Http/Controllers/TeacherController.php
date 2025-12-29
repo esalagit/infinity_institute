@@ -188,9 +188,23 @@ public function delete($id){
     }
 
 
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
-        $teachers= Teacher::with('teachersubject')->get();
+        $search = $request->get('search');
+
+        $teachers = Teacher::with('teachergrade','teachersubject')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('tid', 'like', "%{$search}%")
+                        ->orWhere('teachername', 'like', "%{$search}%")
+                        ->orWhere('address', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%")
+                        ->orWhere('phone1', 'like', "%{$search}%")
+                        ->orWhere('phone2', 'like', "%{$search}%");
+
+                });
+            })
+            ->get();
 
         $pdf = Pdf::loadView('teachers_list_pdf', compact('teachers'));
 

@@ -112,14 +112,25 @@ class SubjectController extends Controller
 
 
 
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
-        $subjects = Subject::with('techname')->get();
+        $search = $request->get('search');
+
+        $subjects = Subject::with('techname')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('subjectid', 'like', "%{$search}%")
+                        ->orWhere('subjectname', 'like', "%{$search}%")
+                        ->orWhereHas('techname', function ($tq) use ($search) {
+                            $tq->where('teachername', 'like', "%{$search}%");
+                        });
+                });
+            })
+            ->get();
 
         $pdf = Pdf::loadView('subject_list_pdf', compact('subjects'));
 
         return $pdf->download('subjects.pdf');
     }
-
 
 }

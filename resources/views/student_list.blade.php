@@ -21,9 +21,10 @@ All Students In Institute
             <button id="exportstudentExcel" class="btn btn-success mb-2">
                 Export Excel
             </button>
-            <a href="{{route('student.export.pdf')}}" class="btn btn-danger mb-2">
+            <button id="exportstudentPdf" class="btn btn-danger mb-2">
                 Export PDF
-            </a>
+            </button>
+
 
             <form action="{{route('student.import')}}" method="post" class="mb-2" enctype="multipart/form-data" accept-charset="utf-8">
          @csrf

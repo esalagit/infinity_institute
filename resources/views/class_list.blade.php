@@ -15,9 +15,9 @@ All Classes
             <button id="exportclassExcel" class="btn btn-success mb-2">
                 Export Excel
             </button>
-            <a href="{{ route('class.export.pdf') }}" class="btn btn-danger mb-2">
+            <button id="exportclassPdf" class="btn btn-danger mb-2">
                 Export PDF
-            </a>
+            </button>
 
             <form action="{{ route('class.import') }}" method="post"  class="mb-2" enctype="multipart/form-data" accept-charset="utf-8">
                 @csrf

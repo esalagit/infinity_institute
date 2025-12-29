@@ -96,14 +96,20 @@ class ClassController extends Controller
         return Excel::download(new ClassExport($search), 'classes.xlsx');
     }
 
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
+        $search = $request->get('search');
 
-        $classes = Classes::all();
-    $pdf = Pdf::loadView('class_list_pdf',compact('classes'));
+        $classes = Classes::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where('classid', 'like', "%{$search}%")
+                    ->orWhere('classname', 'like', "%{$search}%");
+            })
+            ->get();
 
-    return $pdf->download('classes.pdf');
+        $pdf = Pdf::loadView('class_list_pdf', compact('classes'));
 
+        return $pdf->download('classes.pdf');
+    }
 
-}
 }

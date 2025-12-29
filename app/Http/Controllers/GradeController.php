@@ -121,15 +121,24 @@ class GradeController extends Controller
     }
 
 
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
-        $grades = Grade::with('classroom')->get();
+        $search = $request->get('search');
 
-    $pdf = Pdf::loadView('grade_list_pdf', compact('grades'));
+        $grades = Grade::with('classroom')
+            ->when($search, function ($query) use ($search) {
+                $query->where('gradeid', 'like', "%{$search}%")
+                    ->orWhere('gradename', 'like', "%{$search}%")
+                    ->orWhereHas('classroom', function ($q) use ($search) {
+                        $q->where('classname', 'like', "%{$search}%");
+                    });
+            })
+            ->get();
 
-    return $pdf->download('grade.pdf');
+        $pdf = Pdf::loadView('grade_list_pdf', compact('grades'));
 
+        return $pdf->download('grades.pdf');
+    }
 
-}
 
 }

@@ -202,19 +202,32 @@ public function importExcel(Request $request)
     public function exportExcel(Request $request)
     {
         $search = $request->get('search');
-       return Excel::download(new StudentsExport, 'students.xlsx');
+       return Excel::download(new StudentsExport($search), 'students.xlsx');
     }
 
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
-        $students= Student::with('subject')->get();
+        $search = $request->get('search');
 
-    $pdf = Pdf::loadView('student_list_pdf', compact('students'));
+        $students = Student::with('subject')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('sid', 'like', "%{$search}%")
+                        ->orWhere('name', 'like', "%{$search}%")
+                        ->orWhere('address', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%")
+                        ->orWhere('phone1', 'like', "%{$search}%")
+                        ->orWhere('phone2', 'like', "%{$search}%")
+                        ->orWhere('pphone', 'like', "%{$search}%");
+                });
+            })
+            ->get();
 
-    return $pdf->download('students.pdf');
+        $pdf = Pdf::loadView('student_list_pdf', compact('students'));
 
+        return $pdf->download('students.pdf');
+    }
 
-}
 
 
 }

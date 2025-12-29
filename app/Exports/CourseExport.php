@@ -7,9 +7,8 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class CourseExport implements  WithHeadings, WithMapping, FromQuery
+class CourseExport implements WithHeadings, WithMapping, FromQuery
 {
-
     protected $search;
 
     public function __construct($search = null)
@@ -19,21 +18,23 @@ class CourseExport implements  WithHeadings, WithMapping, FromQuery
 
     public function query()
     {
-     $query = Course::query();
+        $query = Course::query();
 
         if ($this->search) {
             $query->where('courseid', 'like', '%' . $this->search . '%')
-                  ->orWhere('coursename', 'like', '%' . $this->search . '%')
-                  ->orWhere('subject_id', 'like', '%' . $this->search . '%');
+                ->orWhere('coursename', 'like', '%' . $this->search . '%')
+                ->orWhere('subject_id', 'like', '%' . $this->search . '%');
         }
+
         return $query;
     }
+
     public function headings(): array
     {
         return [
-        'courseid',
-        'coursename',
-        'subject_id'
+            'courseid',
+            'coursename',
+            'subject_id',
         ];
     }
 
